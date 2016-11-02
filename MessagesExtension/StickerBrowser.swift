@@ -35,7 +35,7 @@ class StickerBrowser: UIView, UICollectionViewDataSource, UICollectionViewDelega
         collectionView.frame = bounds
         let flow = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         flow.scrollDirection = .vertical
-        flow.itemSize = CGSize(width: bounds.size.width-40, height: 50)
+        flow.itemSize = CGSize(width: min(250, bounds.size.width-40), height: 50)
         flow.minimumLineSpacing = 0
         flow.minimumInteritemSpacing = 0
         collectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
