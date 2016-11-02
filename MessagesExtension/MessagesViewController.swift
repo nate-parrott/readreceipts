@@ -13,12 +13,31 @@ class MessagesViewController: MSMessagesAppViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        view.addSubview(browser)
+        view.addConstraints([
+            view.leftAnchor.constraint(equalTo: browser.leftAnchor),
+            view.rightAnchor.constraint(equalTo: browser.rightAnchor),
+            view.topAnchor.constraint(equalTo: browser.topAnchor),
+            view.bottomAnchor.constraint(equalTo: browser.bottomAnchor)
+            ])
+        browser.translatesAutoresizingMaskIntoConstraints = false
+        _update()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    let browser = StickerBrowser()
+    
+    func _update() {
+        let strings: [(String, String)] = [
+            ("read", "Read X1"),
+            ("ignored", "Ignored X1"),
+            ("blocked", "Blocked X1"),
+            ("read_cried", "Read and cried X1"),
+            ("deleted", "Deleted X1"),
+            ("regretted", "Regretted reading X1"),
+            ("screenshotted", "Screenshotted X1"),
+            ("read_forgot", "Read X1, forgotten X2")
+        ]
+        browser.receipts = strings.map({ ReadReceipt(text: $0.1, time: Date(), id: $0.1) })
     }
     
     // MARK: - Conversation Handling
@@ -28,6 +47,7 @@ class MessagesViewController: MSMessagesAppViewController {
         // This will happen when the extension is about to present UI.
         
         // Use this method to configure the extension and restore previously stored state.
+        _update()
     }
     
     override func didResignActive(with conversation: MSConversation) {
