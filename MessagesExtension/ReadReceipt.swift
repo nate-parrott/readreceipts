@@ -44,15 +44,17 @@ class ReadReceipt {
     let id: String
     var image: UIImage {
         get {
-            let size = CGSize(width: 100, height: 86)
+            let width: CGFloat = 120
             let format = UIGraphicsImageRendererFormat()
             format.opaque = false
-            format.scale = 4 // 3?
+            format.scale = 3
             let padding: CGFloat = 2
             let marginBottom: CGFloat = 10
+            let maxTextSize = CGSize(width: width - padding * 2, height: 200)
+            let textSize = self.attributedString.boundingRect(with: maxTextSize, options: .usesLineFragmentOrigin, context: nil).size
+            let size = CGSize(width: 120, height: 80 + textSize.height)
+            
             return UIGraphicsImageRenderer(size: size, format: format).image(actions: { (ctx) in
-                let maxTextSize = CGSize(width: size.width - padding * 2, height: size.height - padding * 2)
-                let textSize = self.attributedString.boundingRect(with: maxTextSize, options: .usesLineFragmentOrigin, context: nil).size
                 let textRect = CGRect(x: round((size.width - textSize.width)/2), y: size.height - textSize.height - padding - marginBottom, width: textSize.width, height: textSize.height)
                 UIColor.white.setFill()
                 UIBezierPath(roundedRect: textRect.insetBy(dx: -padding, dy: -padding), cornerRadius: 5).fill()

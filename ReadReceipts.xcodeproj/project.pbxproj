@@ -431,6 +431,7 @@
 				5F4F42581DC937250026228F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5F4F425A1DC937250026228F /* Build configuration list for PBXNativeTarget "ReadReceipts" */ = {
 			isa = XCConfigurationList;
@@ -439,6 +440,7 @@
 				5F4F425C1DC937250026228F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
